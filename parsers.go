@@ -10,6 +10,7 @@ import (
 
 // Parse input text into states map
 func (m *margopher) ParseText(text string) {
+
 	words := strings.Split(text, " ")
 
 	for i := 0; i < len(words)-2; i++ {

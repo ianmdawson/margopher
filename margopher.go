@@ -9,12 +9,12 @@ type margopher struct {
 	states map[[2]string][]string
 }
 
-// Margopher constructor
+// New Margopher constructor
 func New() *margopher {
 	return &margopher{states: make(map[[2]string][]string)}
 }
 
-// Generate margopher senetence based on a given length
+// Generate margopher sentence based on a given length
 func (m *margopher) Generate() string {
 
 	var sentence bytes.Buffer
@@ -25,14 +25,20 @@ func (m *margopher) Generate() string {
 
 	for {
 		suffix := getRandomWord(m.states[prefix])
-		sentence.WriteString(suffix + " ")
 
-		// Break the loop if suffix ends in "." and senetenceLength is enough
-		if isTerminalWord(suffix) {
+		// Break the loop if suffix ends in "." and sentenceLength is enough or if
+		// the suffix is nothing, assume the end of the sentence
+		if isTerminalWord(suffix) || (len(suffix) == 0) {
 			break
 		}
 
+		sentence.WriteString(suffix + " ")
 		prefix = [2]string{prefix[1], suffix}
+	}
+
+	if !strings.HasSuffix(sentence.String(), ".") {
+		sentence.Truncate(len(sentence.String()) - 1)
+		sentence.WriteString(".")
 	}
 
 	return sentence.String()

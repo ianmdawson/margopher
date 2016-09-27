@@ -12,6 +12,12 @@ func TestIsTerminalWord(t *testing.T) {
 	if isTerminalWord("Hey.") == false {
 		t.Error("isTerminalWord: it should return true for words ending in period.")
 	}
+	if isTerminalWord("Hey;") == false {
+		t.Error("isTerminalWord: it should return true for words ending in semicolon.")
+	}
+	if isTerminalWord("Hey?") == false {
+		t.Error("isTerminalWord: it should return true for words ending in question mark.")
+	}
 }
 
 func TestReadText(t *testing.T) {

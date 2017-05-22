@@ -66,3 +66,16 @@ func (m *margopher) ReadURL(URL string) string {
 func (m *margopher) ReadDictionary() map[[2]string][]string {
 	return m.states
 }
+
+// Return a random prefix other than the one in the arguments
+func (m *margopher) getRandomPrefix(prefix [2]string) [2]string {
+	// By default, Go orders keys randomly for maps
+	for key := range m.states {
+		if key != prefix {
+			prefix = key
+			break
+		}
+	}
+
+	return prefix
+}

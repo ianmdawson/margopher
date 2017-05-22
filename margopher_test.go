@@ -18,11 +18,14 @@ func TestIsTerminalWord(t *testing.T) {
 	if isTerminalWord("Hey?") == false {
 		t.Error("isTerminalWord: it should return true for words ending in question mark.")
 	}
+	if isTerminalWord("Hey!") == false {
+		t.Error("isTerminalWord: it should return true for words ending in exclamation point.")
+	}
 }
 
 func TestReadText(t *testing.T) {
 	m := New()
-	m.ParseText("I love cats. Cats love tuna.")
+	m.ParseText("Cats are wonderful. Cats love tuna.")
 
 	if m.states == nil {
 		t.Error("ParseText: it should initialize states.")
